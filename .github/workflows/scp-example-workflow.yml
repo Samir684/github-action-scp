@@ -21,7 +21,7 @@ jobs:
         uses: ./
         with:
           local: test
-          remote: scp/directory
+          remote: /var/www/html/gitTest
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.PASSWORD }}
@@ -30,7 +30,7 @@ jobs:
         uses: ./
         with:
           local: test
-          remote: scp/directory
+          remote: /var/www/html/gitTest
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.PASSWORD }}
@@ -41,11 +41,11 @@ jobs:
         uses: ./
         with:
           local: test
-          remote: scp/atomic
-          host: ${{ secrets.HOST }}
+          remote: /var/www/html/gitTest
+          host: ${{ secrets.SECRETS_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.PASSWORD }}
-          privateKey: ${{ secrets.PRIVATE_KEY}}
+          privateKey: ${{ secrets.DEVLOPMENT_SERVER_KEY}}
           rmRemote: true
           dotfiles: true        
           atomicPut: true        
@@ -53,26 +53,26 @@ jobs:
         uses: ./
         with:
           local: test/oof.txt
-          remote: scp/single/readme.md
-          host: ${{ secrets.HOST }}
+          remote: /var/www/html/gitTest/readme.md
+          host: ${{ secrets.SECRETS_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.PASSWORD }}
-          privateKey: ${{ secrets.PRIVATE_KEY}}
+          privateKey: ${{ secrets.DEVLOPMENT_SERVER_KEY}}
       - name: Copy dotfile to remote
         uses: ./
         with:
           local: test/.dot.txt
-          remote: scp/single/.dot.txt
-          host: ${{ secrets.HOST }}
+          remote: /var/www/html/gitTest/.dot.txt
+          host: ${{ secrets.SECRETS_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.PASSWORD }}
-          privateKey: ${{ secrets.PRIVATE_KEY}}
+          privateKey: ${{ secrets.DEVLOPMENT_SERVER_KEY}}
           dotfiles: true
       - name: Copy with user/pw
         uses: ./
         with:
           local: test/oof.txt
-          remote: scp/user/pw/oof.txt
+          remote: /var/www/html/gitTest/oof.txt
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.PASSWORD }}     
@@ -80,10 +80,10 @@ jobs:
         uses: ./
         with:
           local: ${{ env.LOCAL }}
-          remote: scp/directory
+          remote: /var/www/html/gitTest
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.PASSWORD }}
-          privateKey: ${{ secrets.PRIVATE_KEY}}
+          privateKey: ${{ secrets.DEVLOPMENT_SERVER_KEY}}
           rmRemote: true
           dotfiles: true    
